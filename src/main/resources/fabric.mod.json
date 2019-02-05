@@ -1,0 +1,17 @@
+{
+  "id": "simplezombies",
+  "name": "Simple Zombies",
+  "version": "@version@",
+  "descriptions": "Simplifies zombie mechanics",
+  "side": "universal",
+  "license": "Apache 2.0",
+  "authors": [
+    {
+      "name": "InsomniaKitten",
+      "website": "https://github.com/InsomniaKitten"
+    }
+  ],
+  "mixins": {
+    "common": "mixins.simplezombies.json"
+  }
+}

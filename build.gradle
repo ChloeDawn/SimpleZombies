@@ -25,11 +25,19 @@ minecraft {
   refmapName = 'mixins.simplezombies.refmap.json'
 }
 
+repositories {
+  maven {
+    name = 'spongepowered.org'
+    url = 'https://repo.spongepowered.org/maven'
+  }
+}
+
 dependencies {
   minecraft "com.mojang:minecraft:$minecraftVersion"
   mappings "net.fabricmc:yarn:$minecraftVersion.$mappingsVersion"
-  modCompile "net.fabricmc:fabric-loader:$loaderVersion"
+  modCompile "net.fabricmc:fabric-loader:$loaderVersion" exclude group: 'org.spongepowered'
   implementation "com.google.code.findbugs:jsr305:$jsr305Version"
+  implementation 'org.spongepowered:mixin:0.7.11-SNAPSHOT' exclude module: 'launchwrapper'
 }
 
 processResources {

@@ -16,14 +16,10 @@
 
 package io.github.insomniakitten.simplezombies.mixin;
 
-import net.minecraft.entity.EntityData;
 import net.minecraft.entity.mob.ZombieEntity;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(ZombieEntity.class)
@@ -47,35 +43,15 @@ final class ZombieEntityMixin {
     return 0.0;
   }
 
-/*  @ModifyArg(
+  @SuppressWarnings("UnqualifiedMemberReference")
+  @ModifyArg(
     method = "prepareEntityData",
     at = @At(
-      value = "NEW",
-      target = "net/minecraft/entity/mob/ZombieEntity$class_1644"
+      value = "INVOKE",
+      target = "Lnet/minecraft/entity/mob/ZombieEntity$class_1644;<init>"
     )
   )
   private boolean preventChildZombies(final boolean chance) {
     return false;
-  }*/
-
-  @Deprecated // fixme https://github.com/FabricMC/Mixin/issues/5
-  @SuppressWarnings("UnresolvedMixinReference")
-  @ModifyVariable(
-    method = "prepareEntityData",
-    at = @At(
-      value = "JUMP",
-      opcode = Opcodes.IFEQ,
-      shift = Shift.BEFORE
-    ),
-    slice = @Slice(
-      from = @At(value = "NEW", target = "net/minecraft/entity/mob/ZombieEntity$class_1644"),
-      to = @At(value = "FIELD", target = "Lnet/minecraft/entity/mob/ZombieEntity$class_1644;field_7439:Z")
-    )
-  )
-  private EntityData preventChildZombies(final EntityData data) {
-    if (data instanceof ZombieEntity.class_1644) {
-      ((ZombieEntityDataAccessor) data).setIsChild(false);
-    }
-    return data;
   }
 }

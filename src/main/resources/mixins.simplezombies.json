@@ -6,8 +6,6 @@
   "refmap": "@refmap@",
   "package": "io.github.insomniakitten.simplezombies.mixin",
   "mixins": [
-    "ZombieEntityDataAccessor",
-    "ZombieEntityDataMixin",
     "ZombieEntityMixin"
   ],
   "injectors": {
